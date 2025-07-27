@@ -17,7 +17,7 @@ const SkillsSection: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('https://68849a5b745306380a38c43a.mockapi.io/Skills')
+    fetch(import.meta.env.VITE_API_SKILLS)
       .then((res) => res.json())
       .then((data) => {
         setSkillsData(data);

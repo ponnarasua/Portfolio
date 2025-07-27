@@ -19,7 +19,7 @@ const ProjectsSection: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    fetch('https://66f3a95477b5e88970964664.mockapi.io/projects')
+    fetch(import.meta.env.VITE_API_PROJECT)
       .then((res) => res.json())
       .then((data) => setProjects(data))
       .catch((err) => console.error('Error fetching projects:', err));

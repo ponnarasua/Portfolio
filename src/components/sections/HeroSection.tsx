@@ -21,7 +21,7 @@ const HeroSection: React.FC = () => {
   return (
     <section id="home" className="min-h-screen pt-20 relative flex items-center justify-center overflow-hidden overflow-x-hidden">
       {/* Background gradient */}
-      <img src="/hero-background.jpg" alt="Background" className="absolute inset-0 w-full h-full object-cover opacity-50 z-0"/>
+      <img src="/hero-background.jpg" alt="Background" className="absolute inset-0 w-full h-full object-cover opacity-70 z-0"/>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

@@ -29,7 +29,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   setIsSubmitting(true);
 
   try {
-    const response = await fetch('https://66f3a95477b5e88970964664.mockapi.io/contact', {
+    const response = await fetch(import.meta.env.VITE_API_CONTACT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -303,7 +303,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             viewport={{ once: true }}
           >
             <h3 className="text-xl font-bold text-foreground">Contact Information</h3>
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground pb-5">
               Feel free to reach out for collaborations, inquiries, or just a friendly chat!
             </p>
             {/* Interactive Contact Information */}
