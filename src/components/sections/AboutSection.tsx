@@ -28,14 +28,25 @@ const AboutSection: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="relative"
+            className="relative "
           >
-            <div className="relative w-80 h-80 mx-auto">
-              <div className="absolute inset-0 bg-theme-gradient rounded-full blur-xl opacity-30 animate-glow-pulse" />
-              <div className="relative w-full h-full bg-gray-300 rounded-full overflow-hidden glass border-4 border-theme-primary">
-                <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-400 flex items-center justify-center">
-                  <span className="text-6xl text-gray-600">👨‍💻</span>
-                </div>
+            <div className="group relative max-w-sm w-full mx-auto rounded-2xl overflow-hidden shadow-lg glass transition-transform glow-hover">
+              {/* Full Background Image */}
+              <img
+                src="https://i.ibb.co/pjL0LsjK/hero.png"
+                alt="Profile"
+                className="w-full h-full object-cover"
+              />
+
+              {/* Overlay content over the image */}
+              <div className="absolute inset-0 flex flex-col justify-end p-5 bg-gradient-to-t from-white/50 dark:from-zinc-900/70 to-transparent transition-opacity duration-500">
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+                  Ponnarasu A
+                </h2>
+
+                <p className="mt-1 text-sm text-gray-800 dark:text-gray-300">
+                  A Product Designer focused on intuitive user experiences.
+                </p>
               </div>
             </div>
           </motion.div>
@@ -53,14 +64,14 @@ const AboutSection: React.FC = () => {
                 Creating Digital Excellence
               </h3>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                I'm a passionate full-stack developer with over 3 years of experience 
-                in building modern web applications. I specialize in React, Node.js, 
-                and cloud technologies, with a keen eye for user experience and 
+                I'm a passionate full-stack developer with over 3 years of experience
+                in building modern web applications. I specialize in React, Node.js,
+                and cloud technologies, with a keen eye for user experience and
                 performance optimization.
               </p>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                When I'm not coding, you'll find me exploring new technologies, 
-                contributing to open-source projects, or sharing knowledge with 
+                When I'm not coding, you'll find me exploring new technologies,
+                contributing to open-source projects, or sharing knowledge with
                 the developer community.
               </p>
             </div>

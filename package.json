@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.9.0",
+    "@hookform/resolvers": "^5.2.0",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
@@ -44,7 +44,6 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
     "date-fns": "^3.6.0",
-    "emailjs-com": "^3.2.0",
     "embla-carousel-react": "^8.3.0",
     "framer-motion": "^12.23.9",
     "input-otp": "^1.2.4",
@@ -62,7 +61,7 @@
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.178.0",
     "vaul": "^0.9.3",
-    "zod": "^3.23.8"
+    "zod": "^4.0.10"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
             transition={{ delay: 0.2 }}
             className="flex-shrink-0"
           >
-            <h1 className="text-2xl font-bold text-theme-primary">Portfolio</h1>
+            <h1 className="text-2xl font-bold text-theme-primary">Ponnarasu's Portfolio</h1>
           </motion.div>
 
           {/* Desktop Navigation */}

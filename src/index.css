@@ -221,23 +221,23 @@
   border-color: hsl(var(--theme-primary));
 }
 
-/* Custom scrollbar */
+/* Hide scrollbar completely */
 ::-webkit-scrollbar {
-  width: 8px;
+  display: none;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--background));
+  display: none;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--theme-primary));
-  border-radius: 4px;
+  display: none;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--theme-primary-dark));
+  display: none;
 }
+
 
 /* Animated underline for navigation */
 .nav-link {

@@ -1,45 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
+interface Skill {
+  name: string;
+  icon: string;
+}
+
+interface Category {
+  id: string;
+  name: string;
+  skills: Skill[];
+}
+
 const SkillsSection: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState('frontend');
+  const [skillsData, setSkillsData] = useState<Category[]>([]);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
-  const categories = [
-    { id: 'frontend', name: 'Frontend', icon: '🎨' },
-    { id: 'backend', name: 'Backend', icon: '⚙️' },
-    { id: 'tools', name: 'Tools & Others', icon: '🛠️' },
-  ];
+  useEffect(() => {
+    fetch('https://68849a5b745306380a38c43a.mockapi.io/Skills')
+      .then((res) => res.json())
+      .then((data) => {
+        setSkillsData(data);
+        if (data.length > 0) {
+          setActiveCategory(data[0].id);
+        }
+      })
+      .catch((err) => console.error('Error fetching skills:', err));
+  }, []);
 
-  const skills = {
-    frontend: [
-      { name: 'React', level: 95, icon: '⚛️' },
-      { name: 'TypeScript', level: 90, icon: '📘' },
-      { name: 'Next.js', level: 85, icon: '🔺' },
-      { name: 'Vue.js', level: 80, icon: '💚' },
-      { name: 'Tailwind CSS', level: 95, icon: '🎨' },
-      { name: 'Framer Motion', level: 85, icon: '🎭' },
-    ],
-    backend: [
-      { name: 'Node.js', level: 90, icon: '🟢' },
-      { name: 'Python', level: 85, icon: '🐍' },
-      { name: 'Express.js', level: 90, icon: '🚀' },
-      { name: 'MongoDB', level: 85, icon: '🍃' },
-      { name: 'PostgreSQL', level: 80, icon: '🐘' },
-      { name: 'Redis', level: 75, icon: '📊' },
-    ],
-    tools: [
-      { name: 'Git', level: 95, icon: '📁' },
-      { name: 'Docker', level: 80, icon: '🐳' },
-      { name: 'AWS', level: 75, icon: '☁️' },
-      { name: 'Firebase', level: 85, icon: '🔥' },
-      { name: 'Figma', level: 80, icon: '🎨' },
-      { name: 'Jest', level: 85, icon: '🧪' },
-    ],
-  };
+  if (!skillsData.length || !activeCategory) {
+    return (
+      <div className="text-center py-20 text-muted-foreground">
+        Loading Skills...
+      </div>
+    );
+  }
+
+  const activeSkills =
+    skillsData.find((cat) => cat.id === activeCategory)?.skills || [];
 
   return (
     <section id="skills" className="py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -55,7 +58,7 @@ const SkillsSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Category Tabs */}
+        {/* Category Tabs - NO ICONS */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -63,7 +66,7 @@ const SkillsSection: React.FC = () => {
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
-          {categories.map((category) => (
+          {skillsData.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
@@ -73,7 +76,6 @@ const SkillsSection: React.FC = () => {
                   : 'text-foreground hover:text-theme-primary border-theme-primary/20'
               }`}
             >
-              <span className="mr-2">{category.icon}</span>
               {category.name}
             </button>
           ))}
@@ -87,37 +89,33 @@ const SkillsSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {skills[activeCategory as keyof typeof skills].map((skill, index) => (
+          {activeSkills.map((skill, index) => (
             <motion.div
               key={skill.name}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
+              transition={{ delay: index * 0.05, duration: 0.4 }}
               className="glass rounded-lg p-6 hover:scale-105 transition-transform glow-hover"
             >
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center space-x-3">
-                  <span className="text-2xl">{skill.icon}</span>
-                  <h3 className="text-lg font-semibold text-foreground">{skill.name}</h3>
-                </div>
-                <span className="text-theme-primary font-bold">{skill.level}%</span>
-              </div>
-              
-              <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${skill.level}%` }}
-                  transition={{ delay: index * 0.1 + 0.3, duration: 1.2, ease: "easeOut" }}
-                  className="h-full bg-theme-gradient rounded-full relative"
-                >
-                  <div className="absolute inset-0 bg-white/20 animate-pulse" />
-                </motion.div>
+              <div className="flex items-center space-x-3">
+                <img
+                  src={skill.icon}
+                  alt={skill.name}
+                  className="w-6 h-6 object-contain"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src =
+                      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/code/code-original.svg';
+                  }}
+                />
+                <h3 className="text-lg font-semibold text-foreground">
+                  {skill.name}
+                </h3>
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Additional Skills Info */}
+        {/* Learning Message */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -130,8 +128,8 @@ const SkillsSection: React.FC = () => {
               Always Learning
             </h3>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Technology is constantly evolving, and so am I. I'm always exploring new 
-              frameworks, tools, and best practices to stay at the forefront of web development.
+              Technology is constantly evolving, and so am I. I'm always exploring new frameworks,
+              tools, and best practices to stay at the forefront of web development.
             </p>
           </div>
         </motion.div>

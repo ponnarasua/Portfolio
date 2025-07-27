@@ -1,72 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, Eye } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  technologies: string[];
+  web: string;
+  link: string;
+  featured: boolean;
+}
+
 const ProjectsSection: React.FC = () => {
-  const projects = [
-    {
-      id: 1,
-      title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce solution with React, Node.js, and MongoDB. Features include user authentication, payment integration, and admin dashboard.',
-      image: '🛒',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      liveUrl: '#',
-      githubUrl: '#',
-      featured: true,
-    },
-    {
-      id: 2,
-      title: 'Task Management App',
-      description: 'Collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-      image: '📋',
-      technologies: ['React', 'TypeScript', 'Firebase', 'Tailwind'],
-      liveUrl: '#',
-      githubUrl: '#',
-      featured: true,
-    },
-    {
-      id: 3,
-      title: 'Weather Dashboard',
-      description: 'Modern weather application with location-based forecasts, interactive maps, and beautiful data visualizations.',
-      image: '🌤️',
-      technologies: ['Vue.js', 'Chart.js', 'OpenWeather API'],
-      liveUrl: '#',
-      githubUrl: '#',
-      featured: false,
-    },
-    {
-      id: 4,
-      title: 'Social Media Dashboard',
-      description: 'Analytics dashboard for social media management with real-time metrics, scheduling, and performance tracking.',
-      image: '📊',
-      technologies: ['React', 'Express', 'PostgreSQL', 'Chart.js'],
-      liveUrl: '#',
-      githubUrl: '#',
-      featured: false,
-    },
-    {
-      id: 5,
-      title: 'Blog Platform',
-      description: 'Modern blogging platform with markdown support, SEO optimization, and content management system.',
-      image: '✍️',
-      technologies: ['Next.js', 'Sanity', 'Tailwind', 'Vercel'],
-      liveUrl: '#',
-      githubUrl: '#',
-      featured: false,
-    },
-    {
-      id: 6,
-      title: 'Learning Management System',
-      description: 'Educational platform with course management, progress tracking, and interactive learning modules.',
-      image: '🎓',
-      technologies: ['React', 'Django', 'PostgreSQL', 'Redis'],
-      liveUrl: '#',
-      githubUrl: '#',
-      featured: false,
-    },
-  ];
+  const [projects, setProjects] = useState<Project[]>([]);
+
+  useEffect(() => {
+    fetch('https://66f3a95477b5e88970964664.mockapi.io/projects')
+      .then((res) => res.json())
+      .then((data) => setProjects(data))
+      .catch((err) => console.error('Error fetching projects:', err));
+  }, []);
 
   return (
     <section id="projects" className="py-20 relative">
@@ -99,15 +56,20 @@ const ProjectsSection: React.FC = () => {
               <Card className="h-full glass hover:scale-105 transition-all duration-300 glow-hover border-theme-primary/20">
                 <CardHeader>
                   <div className="relative overflow-hidden rounded-lg mb-4">
-                    <div className="w-full h-48 bg-theme-gradient flex items-center justify-center text-6xl">
-                      {project.image}
+                    <div className="w-full h-48 bg-theme-gradient overflow-hidden rounded-lg">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
                     </div>
+
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
                       <Button
                         size="sm"
                         variant="secondary"
                         className="glow-hover"
-                        onClick={() => window.open(project.liveUrl, '_blank')}
+                        onClick={() => window.open(project.web, '_blank')}
                       >
                         <Eye className="h-4 w-4 mr-2" />
                         Demo
@@ -116,14 +78,14 @@ const ProjectsSection: React.FC = () => {
                         size="sm"
                         variant="secondary"
                         className="glow-hover"
-                        onClick={() => window.open(project.githubUrl, '_blank')}
+                        onClick={() => window.open(project.link, '_blank')}
                       >
                         <Github className="h-4 w-4 mr-2" />
                         Code
                       </Button>
                     </div>
                   </div>
-                  
+
                   <CardTitle className="text-xl font-bold text-foreground group-hover:text-theme-primary transition-colors">
                     {project.title}
                     {project.featured && (
@@ -132,12 +94,12 @@ const ProjectsSection: React.FC = () => {
                       </span>
                     )}
                   </CardTitle>
-                  
+
                   <CardDescription className="text-muted-foreground">
                     {project.description}
                   </CardDescription>
                 </CardHeader>
-                
+
                 <CardContent>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech) => (
@@ -149,12 +111,12 @@ const ProjectsSection: React.FC = () => {
                       </span>
                     ))}
                   </div>
-                  
+
                   <div className="flex space-x-2">
                     <Button
                       size="sm"
                       className="bg-theme-primary hover:bg-theme-primary/90 text-white flex-1"
-                      onClick={() => window.open(project.liveUrl, '_blank')}
+                      onClick={() => window.open(project.web, '_blank')}
                     >
                       <ExternalLink className="h-4 w-4 mr-2" />
                       Live Demo
@@ -163,7 +125,7 @@ const ProjectsSection: React.FC = () => {
                       size="sm"
                       variant="outline"
                       className="border-theme-primary text-theme-primary hover:bg-theme-primary hover:text-white"
-                      onClick={() => window.open(project.githubUrl, '_blank')}
+                      onClick={() => window.open(project.link, '_blank')}
                     >
                       <Github className="h-4 w-4" />
                     </Button>

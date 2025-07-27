@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Download } from 'lucide-react';
-import ThreeScene from '../ThreeScene';
 import { Button } from '../ui/button';
 
 const HeroSection: React.FC = () => {
@@ -11,17 +10,18 @@ const HeroSection: React.FC = () => {
       aboutSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+  const scrollTowork = () => {
+    const projectsSection = document.querySelector('#projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
 
   return (
-    <section id="home" className="min-h-screen relative flex items-center justify-center overflow-hidden">
+    <section id="home" className="min-h-screen pt-20 relative flex items-center justify-center overflow-hidden overflow-x-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-theme-gradient opacity-10" />
-      
-      {/* 3D Background Shapes */}
-      <div className="absolute inset-0 opacity-30">
-        <ThreeScene shapes={['cube', 'sphere', 'torus']} animate={true} />
-      </div>
-
+      <img src="/hero-background.jpg" alt="Background" className="absolute inset-0 w-full h-full object-cover opacity-50 z-0"/>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -38,7 +38,7 @@ const HeroSection: React.FC = () => {
           >
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold">
               <span className="text-foreground">Hello, I'm </span>
-              <span className="text-theme-primary glow">Alex</span>
+              <span className="text-theme-primary">Ponnarasu A</span>
             </h1>
             
             <motion.h2
@@ -72,7 +72,7 @@ const HeroSection: React.FC = () => {
             <Button
               size="lg"
               className="bg-theme-primary hover:bg-theme-primary/90 text-white px-8 py-4 text-lg glow-hover animate-glow-pulse group"
-              onClick={() => scrollToNext()}
+              onClick={() => scrollTowork()}
             >
               Explore My Work
               <ArrowDown className="ml-2 h-5 w-5 group-hover:animate-bounce" />
@@ -81,7 +81,8 @@ const HeroSection: React.FC = () => {
             <Button
               variant="outline"
               size="lg"
-              className="border-theme-primary text-theme-primary hover:bg-theme-primary hover:text-white px-8 py-4 text-lg glow-hover group"
+              className="border-theme-primary text-theme-primary hover:bg-theme-primary/10 px-8 py-4 text-lg glow-hover group"
+              onClick={() => window.open('https://shorturl.at/lRM9H', '_blank')}
             >
               <Download className="mr-2 h-5 w-5 group-hover:animate-bounce" />
               Download Resume
@@ -96,8 +97,8 @@ const HeroSection: React.FC = () => {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16"
           >
             {[
-              { number: '50+', label: 'Projects Completed' },
-              { number: '3+', label: 'Years Experience' },
+              { number: '10+', label: 'Projects Completed' },
+              { number: '0.6+', label: 'Years Experience' },
               { number: '100%', label: 'Client Satisfaction' },
             ].map((stat, index) => (
               <motion.div
@@ -121,7 +122,7 @@ const HeroSection: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute -bottom-40 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
