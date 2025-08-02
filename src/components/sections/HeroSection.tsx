@@ -122,7 +122,7 @@ const HeroSection: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 1 }}
-          className="absolute -bottom-40 left-1/2 transform -translate-x-1/2"
+          className="absolute -bottom-20 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
