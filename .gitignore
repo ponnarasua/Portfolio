@@ -29,7 +29,3 @@ coverage
 # Temporary files
 temp
 tmp
-# Environment variables
-.env
-.env.local
-.env.development.local
