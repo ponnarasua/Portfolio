@@ -26,15 +26,22 @@ const Navbar: React.FC = () => {
     { name: 'Orange', value: 'orange', color: '#f97316' },
   ];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsOpen(false);
-  };
-
-  return (
+	const scrollToSection = (href: string) => {
+		// Close mobile menu first
+		setIsOpen(false);
+		
+		// Add a small delay to ensure menu is closed before scrolling
+		setTimeout(() => {
+			const element = document.querySelector(href);
+			if (element) {
+				element.scrollIntoView({ 
+					behavior: 'smooth',
+					block: 'start',
+					inline: 'nearest'
+				});
+			}
+		}, 100);
+	};  return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -154,18 +161,16 @@ const Navbar: React.FC = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden glass"
           >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navItems.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className="block px-3 py-2 text-base font-medium text-foreground hover:text-theme-primary transition-colors w-full text-left"
-                >
-                  {item.name}
-                </button>
-              ))}
-              
-              {/* Mobile Theme Selector */}
+						<div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+							{navItems.map((item) => (
+								<button
+									key={item.name}
+									onClick={() => scrollToSection(item.href)}
+									className="block px-3 py-2 text-base font-medium text-foreground hover:text-theme-primary transition-colors w-full text-left"
+								>
+									{item.name}
+								</button>
+							))}              {/* Mobile Theme Selector */}
               <div className="px-3 py-2">
                 <p className="text-sm font-medium text-muted-foreground mb-2">Color Theme</p>
                 <div className="grid grid-cols-6 gap-2">

@@ -8,9 +8,12 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    hmr: {
+      overlay: false, // Disable error overlay for better performance
+    },
   },
   plugins: [
-    react(),
+    react(), // Keep default SWC settings
     mode === 'development' &&
     componentTagger(),
   ].filter(Boolean),
@@ -18,5 +21,29 @@ export default defineConfig(({ mode }) => ({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  build: {
+    target: 'esnext',
+    minify: 'esbuild',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          three: ['three'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+        },
+      },
+    },
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'three', 'framer-motion'],
+    exclude: ['@vite/client', '@vite/env'],
+    esbuildOptions: {
+      target: 'esnext',
+    },
+  },
+  esbuild: {
+    target: 'esnext',
+    drop: mode === 'production' ? ['console', 'debugger'] : [],
   },
 }));

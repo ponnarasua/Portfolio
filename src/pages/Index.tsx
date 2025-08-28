@@ -1,5 +1,5 @@
 import React from 'react';
-import { Background } from '../components/Background';
+import { LightBackground } from '../components/LightBackground';
 import { Particles } from '../components/Particles';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import Navbar from '../components/Navbar';
@@ -10,12 +10,16 @@ import SkillsSection from '../components/sections/SkillsSection';
 import ContactSection from '../components/sections/ContactSection';
 
 const Index = () => {
+
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-background text-foreground relative ">
-      {/* Background Effects */}
-      <Background />
-      <Particles />
+      <div className="min-h-screen bg-background text-foreground relative">
+        {/* Conditional Background Effects */}
+        <LightBackground />
+
+        {/* Reduced particles for better performance */}
+        <Particles />
+        
         <Navbar />
         
         <main className="relative z-10">
