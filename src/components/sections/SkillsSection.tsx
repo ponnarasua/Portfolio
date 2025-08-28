@@ -97,20 +97,26 @@ const SkillsSection: React.FC = () => {
               transition={{ delay: index * 0.05, duration: 0.4 }}
               className="glass rounded-lg p-6 hover:scale-105 transition-transform glow-hover"
             >
-              <div className="flex items-center space-x-3">
+                <div className="flex items-center space-x-3">
                 <img
                   src={skill.icon}
                   alt={skill.name}
-                  className="w-6 h-6 object-contain"
+                  className="w-6 h-6 object-contain bg-white rounded"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src =
-                      'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/code/code-original.svg';
+                  (e.target as HTMLImageElement).src =
+                    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/code/code-original.svg';
+                  }}
+                  style={{
+                  backgroundColor:
+                    'var(--theme-dark)' === document.documentElement.getAttribute('data-theme')
+                    ? '#fff'
+                    : undefined,
                   }}
                 />
                 <h3 className="text-lg font-semibold text-foreground">
                   {skill.name}
                 </h3>
-              </div>
+                </div>
             </motion.div>
           ))}
         </motion.div>

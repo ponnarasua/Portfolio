@@ -31,12 +31,12 @@ const AboutSection: React.FC = () => {
             className="relative "
           >
             <div className="group relative max-w-sm w-full mx-auto rounded-2xl overflow-hidden shadow-lg glass transition-transform glow-hover">
-              {/* Full Background Image */}
-              <img
-                src="https://i.ibb.co/pjL0LsjK/hero.png"
-                alt="Profile"
-                className="w-full h-full object-cover"
-              />
+                <img
+                  src="https://i.ibb.co/pjL0LsjK/hero.png"
+                  alt="Profile"
+                  className="w-full h-full object-cover dark:bg-gray-900"
+                />
+
 
               {/* Overlay content over the image */}
               <div className="absolute inset-0 flex flex-col justify-end p-5 bg-gradient-to-t from-white/50 dark:from-zinc-900/70 to-transparent transition-opacity duration-500">

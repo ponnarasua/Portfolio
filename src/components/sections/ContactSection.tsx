@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-  Send, Mail, Phone, MapPin, Github, Linkedin, Instagram, MessageCircle,
+  Send, Mail, Phone, Github, Linkedin, Instagram, MessageCircle,
+  TwitterIcon,
 } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -59,12 +60,12 @@ const ContactSection: React.FC = () => {
 
   const socialLinks = [
     { name: 'Phone', icon: Phone, url: 'tel:+917339519364', color: '#25D366' },
-    { name: 'Location', icon: MapPin, url: 'https://maps.app.goo.gl/smdntDhe7Gu9yd4F8', color: '#FBBF24' },
-    { name: 'GitHub', icon: Github, url: 'https://github.com/ponnarasua', color: '#333' },
-    { name: 'LinkedIn', icon: Linkedin, url: 'https://linkedin.com/in/ponnarasua/', color: '#0077B5' },
     { name: 'Email', icon: Mail, url: 'mailto:ponnarasua410@gmail.com', color: '#EA4335' },
     { name: 'WhatsApp', icon: MessageCircle, url: 'https://wa.me/+917339519364', color: '#25D366' },
+    { name: 'GitHub', icon: Github, url: 'https://github.com/ponnarasua', color: '#333' },
+    { name: 'LinkedIn', icon: Linkedin, url: 'https://linkedin.com/in/ponnarasua/', color: '#0077B5' },
     { name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/itz_.ponnarasu_.04/', color: '#E4405F' },
+    { name: 'Twitter', icon: TwitterIcon , url: 'https://x.com/ponnarasu04', color: '#1DA1F2' }
   ];
 
   return (
