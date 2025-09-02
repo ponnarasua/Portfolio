@@ -47,7 +47,7 @@ const HeroSection: React.FC = () => {
           <div className="space-y-4">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold">
               <span className="text-foreground">Hello, I'm </span>
-              <span className="text-theme-primary">Ponnarasu A</span>
+              <span className="text-theme-primary">Ponnarasu</span>
             </h1>
             
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-light text-muted-foreground">
