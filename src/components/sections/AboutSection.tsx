@@ -32,7 +32,7 @@ const AboutSection: React.FC = () => {
           >
             <div className="group relative max-w-sm w-full mx-auto rounded-2xl overflow-hidden shadow-lg glass transition-transform glow-hover">
                 <img
-                  src="https://i.ibb.co/pjL0LsjK/hero.png"
+                  src="/HeroImg.png"
                   alt="Profile"
                   className="w-full h-full object-cover dark:bg-gray-900"
                 />
